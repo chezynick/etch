@@ -5,6 +5,7 @@
 #container {display:flex; flex-direction: row; flex-wrap:wrap; background-color:lightgray;
  border:30px solid red;width:560px;height:560px; margin:0; padding:0;}
 .box {width:35px; height: 35px; background-color: aqua;}
+.painted {background-color:blue;}
 </style>
 </header>
 <body>
@@ -15,20 +16,26 @@
 <script>
     //get container element
 const container = document.getElementById('container');
-// create div element
-var box = document.createElement('div');
+// create div element loop to create 256 boxes
+for (var i=0;i < 256;i++){
+// create box div
+var box = document.createElement('button'+ i);
 
 //add class box to div
 box.classList.add('box');
 
 //attach box to container
 container.appendChild(box);
-//duplicate box until 256 created
 
+}
 //add event listener for mouse enter and leave box 
-
-//create function to change color of background
-
+var button = document.getElementById('container').addEventListener('click',buttonclick);
+function buttonclick(e){
+    console.log(e.target);
+e.target.classList.add('painted');
+}
+//boxes.addEventListener("mouseOver", function()
 
 </script>
 </body>
+
