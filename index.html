@@ -3,11 +3,11 @@
 <title>Etch-a-Sketch</title>
 <style>
 body {display:flex; width:100%; justify-content: center;margin:0;margin-top:5px; padding:0;}
-#container {display:flex; flex-direction: row; flex-wrap:wrap; background-color:lightgray;
+#container {display:flex; flex-direction: row; flex-wrap:wrap; background-color:pink;
  border:30px solid red;width:560px;height:560px; margin:0; padding:0;}
-.box {width:35px; height: 35px; background-color: rgb(136, 139, 139);}
-.box.hover {background-color:rgb(76, 76, 78) ;}
-.painted {background-color:rgb(76, 76, 78);}
+#box {width:35px; height: 35px; background-color: rgb(136, 139, 139);}
+
+#painted {width:35px; height: 35px;background-color:rgb(34, 34, 110);}
 </style>
 </header>
 <body>
@@ -21,11 +21,11 @@ const container = document.getElementById('container');
 // create div element loop to create 256 boxes
 for (var i=0;i < 256;i++){
 // create box div
-var box = document.createElement('button'+ i);
+var box = document.createElement('button'+ (i));
 
 //add class box to div
-box.classList.add('box');
-
+//box.classList.add('box');
+box.setAttribute('id','box');
 //attach box to container
 container.appendChild(box);
 
@@ -34,10 +34,17 @@ container.appendChild(box);
 var button = document.getElementById('container').addEventListener('click',buttonclick);
 function buttonclick(e){
    console.log(e.target);
-e.target.classList.add('painted');
+e.target.setAttribute('id','painted');
 }
 //add event listener for mouse enter and leave box 
+const boxes = document.getElementById('box');
+boxes.addEventListener('mouseenter', buttonclick);
 
+const unpaint = document.getElementById('container').addEventListener('dblclick', unpainted);
+boxes.at
+function unpainted(e){
+    e.target.setAttribute('id','box');
+}
 
 
 
