@@ -23,32 +23,41 @@ display:flex; width:100%; justify-content: space-evenly;margin:0; padding:0; bac
 </div>
 <div id="container"></div>
 <div id="rightside">
+<h3>choose a color</h3>
 
+    <form >
+        <label for="favcolor">Which color do you want?</label>
+        <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+        <input type="submit" value="Submit" id='newColor'>
+      </form>
 
 </div>
 
 <script>
     //get container element
-//const container = document.getElementById('container');
+const container = document.getElementById('container');
 // create div element loop to create 256 boxes
-//for (var i=1;i <=4096 ;i++){
+for (var i=1;i <=4096 ;i++){
 // create box div
-//var box = document.createElement('button'+ (i));
+var box = document.createElement('div');
 
 //add class box to div
 
-//box.setAttribute('id','box');
+box.setAttribute('id','box');
 //attach box to container
-//container.appendChild(box);
+container.appendChild(box);
+//add width/height to boxes
+box.style.width = '9px';
+box.style.height = '9px';
+}
 
-//}
 
-//add event listener for mouse enter and leave box 
 
 //add event listener on resize button
 document.getElementById('resize').addEventListener('click', reSizeBox);
 //create resize function with prompt=newsize value
 function reSizeBox(){
+    //clear current contents
    var newsheet = document.getElementById('container');
    newsheet.innerHTML='';
     const newSize = prompt ('how many squares wide would you like the Canvas to be?');
@@ -60,31 +69,34 @@ function reSizeBox(){
  
     const container = document.getElementById('container');
 
-// create div element loop to create 256 boxes
+// create div element loop to create inputted# of boxes
 for (var i=1;i <=canvasSize ;i++){
+
 // create box div
     
-
     var box = document.createElement('div');
 
 //add class box to div
 
      box.setAttribute('id','box');
     
-//once loop ensure new boxes w/h are equal to newsize
+
      
 //attach box to container
 container.appendChild(box);
 
+//once loop ensure new boxes w/h are equal to newsize
      box.style.width = newDimen + 'px';
      box.style.height = newDimen +'px';
      
 }
 }
+
 var button = document.getElementById('container').addEventListener('mouseover',buttonclick);
 function buttonclick(e){
    console.log(e.target);
-e.target.style.backgroundColor="rgb(64, 145, 108)";
+   let x = document.getElementById('favcolor').value;
+e.target.style.backgroundColor = x;
 }
 
 
