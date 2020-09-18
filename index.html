@@ -5,10 +5,10 @@
 body {font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 display:flex; width:100%; justify-content: space-evenly;margin:0; padding:0; background-color: rgb(216, 243, 220);}
 #container {display:flex; flex-direction: row; flex-wrap:wrap; background-color:pink;
- border:30px solid rgb(27, 67, 50);width:576px;height:auto; margin:0; padding:0;}
+ border:30px solid rgb(27, 67, 50);width:576px;height:576px; margin:0; padding:0;}
 /* #box {width:35px; height: 35px; background-color: rgb(183, 228, 199);} */
-#box {width:9px; height: 9px; background-color: rgb(183, 228, 199);}
-#painted {width:9px; height: 9px; background-color: rgb(64, 145, 108);}
+#box { background-color: rgb(183, 228, 199);}
+/* #painted {width:9px; height: 9px; background-color: rgb(64, 145, 108);} */
 /* #painted {width:35px; height: 35px;background-color:rgb(64, 145, 108);} */
 #leftside {display:flex; flex-direction: column; justify-content: space-evenly; }
 #rightside {display:flex; flex-direction: column; justify-content: center;}
@@ -18,6 +18,7 @@ display:flex; width:100%; justify-content: space-evenly;margin:0; padding:0; bac
    <div id="leftside" >
     <h3 >Etch-a-Sketch</h3>
     <p >Choose a box size</p>
+    <button id='resize' type="block" input="button">Resize Canvas</button>
     
 </div>
 <div id="container"></div>
@@ -28,21 +29,58 @@ display:flex; width:100%; justify-content: space-evenly;margin:0; padding:0; bac
 
 <script>
     //get container element
-const container = document.getElementById('container');
+//const container = document.getElementById('container');
 // create div element loop to create 256 boxes
-for (var i=1;i <=4096 ;i++){
+//for (var i=1;i <=4096 ;i++){
 // create box div
-var box = document.createElement('button'+ (i));
+//var box = document.createElement('button'+ (i));
 
 //add class box to div
 
-box.setAttribute('id','box');
+//box.setAttribute('id','box');
+//attach box to container
+//container.appendChild(box);
+
+//}
+
+//add event listener for mouse enter and leave box 
+
+//add event listener on resize button
+document.getElementById('resize').addEventListener('click', reSizeBox);
+//create resize function with prompt=newsize value
+function reSizeBox(){
+   var newsheet = document.getElementById('container');
+   newsheet.innerHTML='';
+    const newSize = prompt ('how many squares wide would you like the Canvas to be?');
+ //new function to divide container w/h by newize, also to sq newsize and loop to create new boxes 
+   var newDimen = 576/newSize;
+   console.log(newDimen);
+   const canvasSize = newSize * newSize;
+    //get container element
+ 
+    const container = document.getElementById('container');
+
+// create div element loop to create 256 boxes
+for (var i=1;i <=canvasSize ;i++){
+// create box div
+    
+
+    var box = document.createElement('div');
+
+//add class box to div
+
+     box.setAttribute('id','box');
+    
+//once loop ensure new boxes w/h are equal to newsize
+     
 //attach box to container
 container.appendChild(box);
 
+     box.style.width = newDimen + 'px';
+     box.style.height = newDimen +'px';
+     
 }
-
-//add event listener for mouse enter and leave box 
+}
 var button = document.getElementById('container').addEventListener('mouseover',buttonclick);
 function buttonclick(e){
    console.log(e.target);
